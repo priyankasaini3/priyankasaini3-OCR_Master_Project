@@ -1,0 +1,54 @@
+
+output:
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+# do not change these options
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(error = TRUE,comment=NA) # do not edit this line.
+```
+
+
+
+
+```{r libraries, include=FALSE}
+# load required libraries / additional files
+# load required libraries / additional files
+
+# Loading packages using prepared packages file
+source("mypackages.r") 
+
+```
+
+```{r data}
+# load dataset
+oldcarrowdata<-read.csv("data/ocr.csv")
+dim(oldcarrowdata)
+str(oldcarrowdata)
+head(oldcarrowdata)
+# Create the data for the chart.
+v <- 0:13
+t <- oldcarrowdata$wrong_words_openCV
+s <- oldcarrowdata$wrong_words_google
+r <- oldcarrowdata$wrong_words_aws
+p <- oldcarrowdata$wrong_words_pytesseract
+
+# Give the chart file a name.
+
+
+# Plot the bar chart.
+plot(v, t, type = "l", col = "red",pch = 19,xlim=c(0,14),ylim=c(-1,20) ,xlab = "Word error", ylab = "",lwd=3.0) 
+
+lines(s, type = "l", col = "green",lwd=3.0)
+lines(p, type = "l", col = "yellow",lwd=3.0)
+lines(r, type = "l", col = "blue",lwd=3.0)
+legend("topleft",                                       # Add legend to plot
+       legend = c("Pytesseract+openCV", "Google Vision", "Pytesseract","AWS Rekognition"),
+       col = c("red", "green", "yellow","blue"),
+       lty = 1:2, cex=0.8)
+
+# Save the file.
+
+
+```
